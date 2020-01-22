@@ -24,4 +24,10 @@ class git {
     group => "vagrant",
   }
 
+  exec { "init-git-lfs":
+    command => "git lfs install",
+    user => "vagrant",
+    environment =>  ['HOME=/home/vagrant'],
+    require => File["add-git-config"]
+    }
 }
