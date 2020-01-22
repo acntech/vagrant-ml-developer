@@ -11,10 +11,17 @@ class git {
     require => Package["install-git"],
   }
 
+  package { "install-git-lfs":
+    name => "git-lfs",
+    ensure => "installed",
+    require => Package["install-git"],
+  }
+
   file { "add-git-config":
     path => "/home/vagrant/.gitconfig",
     source => "puppet:///modules/git/gitconfig",
     owner => "vagrant",
     group => "vagrant",
   }
+
 }

@@ -26,7 +26,7 @@ The box has the following developer tools installed.
   * pip
   * python-venv
 * Sqlite3 
-* Miniconda
+* Miniconda3
 * Gitkraken (Desktop only)
 * Pycharm Community edition (Desktop only)
 

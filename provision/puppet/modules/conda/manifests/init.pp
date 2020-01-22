@@ -14,9 +14,17 @@ class conda (
     creates => '/home/vagrant/miniconda'
   }
 
-  exec { "add-to-bashrc":
-    command => "echo 'export PATH=\"/home/vagrant/miniconda/bin:\$PATH\"' >> /home/vagrant/.bashrc",
-    unless => 'grep -q "export PATH=\"/home/vagrant/miniconda/bin:\$PATH\"" .bashrc'
+  exec { "conda-init":
+    command => "/home/vagrant/miniconda/bin/conda init",
+    user => "vagrant",
+    unless => 'grep -q "export PATH=\"/home/vagrant/miniconda/bin:\$PATH\"" /home/vagrant/.bashrc',
+    require => Exec["install conda"]
+  }
+
+  exec { "disable-auto-activate":
+    command => "/home/vagrant/miniconda/bin/conda config --set auto_activate_base false",
+    user => "vagrant",
+    require => Exec["conda-init"]
   }
 
 }
