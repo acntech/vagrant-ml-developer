@@ -2,12 +2,12 @@ class python3 () {
 
     package { "install-pip":
     name => "python3-pip",
-    ensure => "installed",
+    ensure => "latest",
   }
 
   package { "install-venv":
     name => "python3-venv",
-    ensure => "installed",
+    ensure => "latest",
     require => Package["install-pip"],
   }
 

@@ -9,3 +9,4 @@ include python3
 include pip
 include sqlite3
 include conda
+include zsh

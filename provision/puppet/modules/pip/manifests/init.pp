@@ -1,5 +1,6 @@
 class pip (
-  $pip_requirements = "/home/vagrant/requirements.txt",
+  $pip_requirements_file = "/home/vagrant/requirements.txt",
+  $pip_requirements = ["tensorflow", "numpy", "pandas", "flask", "scikit-learn"],
   $jupyter_config = "/home/vagrant/.jupyter/jupyter_notebook_config.py"
   ) {
 
@@ -8,25 +9,26 @@ class pip (
   }
 
   file { "add-pip-requirements":
-    path => $pip_requirements,
+    path => $pip_requirements_file,
     source => "puppet:///modules/pip/requirements.txt",
     owner => "vagrant",
     group => "vagrant",
     require => Exec["upgrade-pip"]
   }
 
-   exec { "install-requirements":
-    command => "python3 -m pip install -r ${pip_requirements}",
-    require => File["add-pip-requirements"]
-     }
+    package { $pip_requirements:
+    ensure => "latest",
+    provider => "pip3",
+    require => File["add-pip-requirements"],
+  }
 
-    
+
     file { '/home/vagrant/.jupyter':
     ensure => 'directory',
     replace => 'no',
     owner  => 'vagrant',
     group  => 'vagrant',
-    require => Exec["install-requirements"]
+    require => Package[["tensorflow", "numpy", "pandas", "flask", "scikit-learn"]]
   }
     
     
