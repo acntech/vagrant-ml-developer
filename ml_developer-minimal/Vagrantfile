@@ -33,6 +33,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Disable 3D acceleration
     vb.customize ["modifyvm", :id, "--accelerate3d", "off"]
   end
+
+  # Setting ports that can be assigned if preferred ports are taken
   config.vm.usable_port_range = 8000..8999
 
   #Port forwarding
