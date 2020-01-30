@@ -1,6 +1,6 @@
 class pip (
   $pip_requirements_file = "/home/vagrant/requirements.txt",
-  $pip_requirements = ["tensorflow", "numpy", "pandas", "flask", "scikit-learn"],
+  $pip_requirements = ["tensorflow", "numpy", "pandas", "jupyter", "flask", "scikit-learn"],
   $jupyter_config = "/home/vagrant/.jupyter/jupyter_notebook_config.py"
   ) {
 
@@ -28,7 +28,7 @@ class pip (
     replace => 'no',
     owner  => 'vagrant',
     group  => 'vagrant',
-    require => Package[["tensorflow", "numpy", "pandas", "flask", "scikit-learn"]]
+    require => Package[$pip_requirements]
   }
     
     
