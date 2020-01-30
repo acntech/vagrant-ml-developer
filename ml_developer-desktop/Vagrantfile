@@ -38,9 +38,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.usable_port_range = 8000..8999
 
    #Port forwarding
-  config.vm.network "forwarded_port", guest: 8888, host: 8888   # Jupyter
-  config.vm.network "forwarded_port", guest: 8080, host: 8080   # HTTP
-  config.vm.network "forwarded_port", guest: 6006, host: 6006   # Tensorboard
+  config.vm.network "forwarded_port", guest: 8888, host: 8888, auto_correct: true   # Jupyter
+  config.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true   # HTTP
+  config.vm.network "forwarded_port", guest: 6006, host: 6006, auto_correct: true   # Tensorboard
   
   # Puppet comes preinstalled with ubuntu/acntech. Uncomment to install puppet with other base box
   #config.vm.provision :shell, :inline => 'apt-get -y update; apt-get -y install puppet'
