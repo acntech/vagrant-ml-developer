@@ -12,4 +12,12 @@ class zsh () {
     require => Package["install-zsh"]
   }
 
+exec { "install-oh-my-zsh":
+    user => "vagrant",
+    cwd => "/home/vagrant",
+    environment => ['ZSH=/home/vagrant/.oh-my-zsh', 'HOME=/home/vagrant'],
+    command => 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended',
+    creates => '/home/vagrant/.oh-my-zsh',
+    require => Package["install-zsh"]  }
+
 }

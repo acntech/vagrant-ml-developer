@@ -6,7 +6,8 @@ class system (
   $layout = 'no',
   $variant = '',
   $options = '',
-  $backspace = 'guess'
+  $backspace = 'guess',
+  $configuration_script = "/home/vagrant/.configure.sh"
   ) {
 
   exec { "system-apt-update":
@@ -15,7 +16,7 @@ class system (
 
   exec { "system-apt-upgrade":
     command => "apt --yes upgrade",
-    require => Exec["system-apt-update"],
+    require => Exec["system-apt-update"]
   }
 
   package { $packages:
@@ -38,5 +39,23 @@ class system (
     command => "/etc/init.d/rng-tools start",
     require => Exec["enable-urandom"],
   }
+
+  file { "commmonrc":
+    path => $configuration_script,
+    source => "puppet:///modules/system/configure.sh",
+    mode => "0755",
+    replace => 'no',
+    owner => "vagrant",
+    group => "vagrant"
+  }
+
+  exec { "add-common-bash":
+    cwd => "/home/vagrant",
+    command => "echo './.configure.sh' >> .bashrc",
+    require => File["commmonrc"]
+  }
+
+
+  
   
 }

@@ -1,5 +1,8 @@
-jupyter
+notebook
+jupytext
 tensorflow
 pandas
 scikit-learn
 flask
+matplotlib
+tensorflow-datasets

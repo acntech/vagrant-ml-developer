@@ -8,6 +8,5 @@ include docker
 include python3
 include pip
 include sqlite3
-include gui
 include conda
 include zsh

@@ -874,3 +874,8 @@ c.NotebookApp.port = 8888
 #  provided, this value will correspond to the value of the Gateway url with 'ws'
 #  in place of 'http'.  (JUPYTER_GATEWAY_WS_URL env var)
 #c.GatewayClient.ws_url = None
+
+
+# Version control for Notebook
+c.NotebookApp.contents_manager_class="jupytext.TextFileContentsManager"
+c.ContentsManager.default_jupytext_formats=".ipynb,.Rmd"
