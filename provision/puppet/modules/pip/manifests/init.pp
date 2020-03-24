@@ -1,38 +1,28 @@
 class pip (
   $pip_requirements_file = "/home/vagrant/requirements.txt",
-  $pip_requirements = ["notebook", "jupytext"],
+  $jupyter_requirements = ["notebook", "jupytext"],
   $jupyter_config = "/home/vagrant/.jupyter/jupyter_notebook_config.py"
   ) {
 
-    exec { "upgrade-pip":
+  exec { "upgrade-pip":
     command => "python3 -m pip install --upgrade pip"
   }
 
-  file { "add-pip-requirements":
-    path => $pip_requirements_file,
-    source => "puppet:///modules/pip/requirements.txt",
-    owner => "vagrant",
-    group => "vagrant",
-    require => Exec["upgrade-pip"]
-  }
-
-    package { $pip_requirements:
+  package { $jupyter_requirements:
     ensure => "latest",
     provider => "pip3",
     require => File["add-pip-requirements"],
   }
 
-
-    file { '/home/vagrant/.jupyter':
+  file { '/home/vagrant/.jupyter':
     ensure => 'directory',
     replace => 'no',
     owner  => 'vagrant',
     group  => 'vagrant',
-    require => File[$pip_requirements_file]
+    require => Package[$jupyter_requirements]
   }
-    
-    
-    file { "configure-jupyter":
+
+  file { "configure-jupyter":
     path => $jupyter_config,
     source => "puppet:///modules/pip/jupyter_notebook_config.py",
     replace => 'no',
@@ -41,6 +31,12 @@ class pip (
     require => File["/home/vagrant/.jupyter"]
   }
 
-    
- 
+  file { "add-pip-requirements":
+    path => $pip_requirements_file,
+    source => "puppet:///modules/pip/requirements.txt",
+    replace => 'no',
+    owner => "vagrant",
+    group => "vagrant",
+    require => Exec["upgrade-pip"]
+  }  
 }

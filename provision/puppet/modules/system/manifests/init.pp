@@ -40,6 +40,13 @@ class system (
     require => Exec["enable-urandom"],
   }
 
+  file { '/home/vagrant/dev':
+    ensure => 'directory',
+    replace => 'no',
+    owner  => 'vagrant',
+    group  => 'vagrant'
+  }
+
   file { "commmonrc":
     path => $configuration_script,
     source => "puppet:///modules/system/configure.sh",
@@ -54,8 +61,4 @@ class system (
     command => "echo './.configure.sh' >> .bashrc",
     require => File["commmonrc"]
   }
-
-
-  
-  
 }
