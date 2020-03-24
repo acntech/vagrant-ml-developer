@@ -1,6 +1,6 @@
 class python3 () {
 
-    package { "install-pip":
+  package { "install-pip":
     name => "python3-pip",
     ensure => "latest",
   }
@@ -10,5 +10,4 @@ class python3 () {
     ensure => "latest",
     require => Package["install-pip"],
   }
-
 }
