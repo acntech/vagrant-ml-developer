@@ -9,6 +9,7 @@ class conda (
   }
 
   exec { "install conda":
+    user => "vagrant",
     command => "bash /tmp/${miniconda} -b -p /home/vagrant/miniconda",
     require => Exec["download-conda"],
     creates => '/home/vagrant/miniconda'
