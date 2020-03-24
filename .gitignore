@@ -31,3 +31,6 @@ nbactions.xml
 
 # SSH-RSA
 *.pub
+
+# Vagrantbox
+.box
