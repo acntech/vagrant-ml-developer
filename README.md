@@ -24,8 +24,7 @@ The box has the following developer tools installed.
   * python-venv
 * Sqlite3 
 * Miniconda3
-* Gitkraken (Desktop only)
-* Pycharm Community edition (Desktop only)
+
 
 ### Python evnironments
 The AcnTech ML-developer box comes with both Python and Anaconda (Miniconda) installed. By default python3 will refer the "native" python 3.6 installation which ships with ubuntu. To switch to/from Miniconda3-python type:
