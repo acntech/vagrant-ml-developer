@@ -1,0 +1,44 @@
+# This is an example file on how to utialize and configure a box from 
+# Vagrantcloud. A best practise is to make a separate folder for each "new" machine.
+# And copy this Vagrantfile into the given folder. 
+
+
+Vagrant.configure("2") do |config|
+    
+    # Change the Vagrantcloud box to use
+    config.vm.box = "acntech/ml-developer-minimal"
+    
+    # Change box version to use 
+    config.vm.box_version = "1.0.1"
+    
+	config.vm.provider "virtualbox" do |vb|
+
+		# Name to display in Virtualbox
+		vb.name = "AcnTech ML-Developer Minimal Example machine"
+
+		# Display the VirtualBox GUI when booting the machine
+		vb.gui = false
+
+		# Customize CPU count
+		vb.cpus = "4"
+
+		# Customize the amount of memory on the VM
+		vb.memory = "4096"
+
+		# Customize amount of video memory
+		vb.customize ["modifyvm", :id, "--vram", "128"]
+
+		# Disable 3D acceleration
+		vb.customize ["modifyvm", :id, "--accelerate3d", "off"]
+	end
+	
+    # Portrange available in portpool
+    config.vm.usable_port_range = 8000..8999
+    
+    # Port forwarding
+    config.vm.network "forwarded_port", guest: 8888, host: 8888, host_ip: "127.0.0.1", auto_correct: true   # Jupyter
+    config.vm.network "forwarded_port", guest: 8080, host: 8080, host_ip: "127.0.0.1", auto_correct: true   # HTTP
+    config.vm.network "forwarded_port", guest: 6006, host: 6006, host_ip: "127.0.0.1", auto_correct: true   # Tensorboard
+    config.vm.network "forwarded_port", guest: 22, host: 2223, host_ip: "127.0.0.1", auto_correct: true   # Tensorboard
+
+end
