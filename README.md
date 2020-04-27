@@ -12,6 +12,24 @@ See details in folder [ml_developer-minimal](ml_developer-minimal).
 The host computer must have _Intel VT/AMD-V_ virtualization support enabled in the BIOS.
 [Oracle VirtualBox 6.0](https://www.virtualbox.org) and [Vagrant](https://www.vagrantup.com) must also be installed on the host.
 
+### How to use ML-developer
+The best way to use ML-develope is simply to create a new directory on your computer that contains a Vagranfile referencing this box
+from Vagrant cloud. As a minimum as such:
+
+```ruby
+Vagrant.configure("2") do |config|
+    
+    # Change the Vagrantcloud box to use
+    config.vm.box = "acntech/ml-developer-minimal"
+    
+    # Change box version to use 
+    config.vm.box_version = "1.0.1"
+    
+end
+```
+
+For convenience a richer example file is placed in our github repo under /machines/ml_developer-minimal_example_machine. Please refer to this file for correct setup for portforwarding and basic virtualbox setup. 
+
 ### Installed tools
 The box has the following developer tools installed.
 
@@ -66,5 +84,7 @@ Open virtualbox --> select desired machine --> Settings --> Network --> Advanced
 Support both in Pycharm Pro and Visual Studio Code makes it possible to use AcnTech ML developer box as a remote environment.
 
 The procedure is tried and tested from VSCode with [remote development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) extension. 
+
+
 
 
