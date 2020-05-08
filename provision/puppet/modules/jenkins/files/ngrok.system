@@ -1,0 +1,13 @@
+[Unit]
+Description=Ngrok
+After=network.service
+
+[Service]
+type=simple
+User=vagrant
+WorkingDirectory=/home/vagrant
+ExecStart=/home/vagrant/ngrok start --all --config="/home/vagrant/ngrok_config.yml"
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

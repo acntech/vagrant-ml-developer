@@ -58,7 +58,7 @@ class system (
 
   exec { "add-common-bash":
     cwd => "/home/vagrant",
-    command => "echo './.configure.sh' >> .bashrc",
+    command => "echo '~/.configure.sh' >> .bashrc",
     require => File["commmonrc"]
   }
 }
