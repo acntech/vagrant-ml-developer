@@ -20,4 +20,10 @@ class zsh () {
     unless => 'grep -q "export PATH=\"/home/vagrant/miniconda/bin:\$PATH\"" /home/vagrant/.zshrc',
     require => Package["install-zsh"]
   }
+
+    exec { "configure_zshrc":
+    cwd => "/home/vagrant",
+    command => "echo 'source ~/.aliases' >> .zshrc",
+    require => File["alias_rc"]
+  }
 }

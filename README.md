@@ -3,9 +3,12 @@
 The AcnTech ML-developer Desktop is a Vagrant box is a premade image containing typical ml tool and utils. Created with Vagrant 2.2.6 and VirtualBox 6.0.14. The box comes in two flavours; desktop and minimal. 
 
 <b>AcnTech ML-developer Desktop</b>  
-See details in folder [/ml_developer-desktop]([/ml_developer-desktop).
+Based on [acntech/ubuntu](https://app.vagrantup.com/acntech/ubuntu) (Ubuntu 19.10)  
+See details in folder [/ml_developer-desktop]([/ml_developer-desktop).   
 
-<b>AcnTech ML-developer Minimal</b>  
+
+<b>AcnTech ML-developer Minimal (recommended)</b>  
+Based on [bento/ubuntu-20.04](https://app.vagrantup.com/bento/boxes/ubuntu-20.04) (Ubuntu 20.04)  
 See details in folder [ml_developer-minimal](ml_developer-minimal).
 
 ### Prerequisites
@@ -23,7 +26,7 @@ Vagrant.configure("2") do |config|
     config.vm.box = "acntech/ml-developer-minimal"
     
     # Change box version to use 
-    config.vm.box_version = "1.0.1"
+    config.vm.box_version = "1.0.3"
     
 end
 ```
@@ -37,15 +40,22 @@ The box has the following developer tools installed.
 * Git 2.20.1
 * Docker 19.03.5 Community Edition
   * Docker Compose 1.24.1
-* Python3
+* Python 3.8
   * pip
   * python-venv
 * Sqlite3 
 * Miniconda3
+* Poetry
 
+
+###
+Make zsh default shell:  
+```bash
+chsh -s $(which zsh) && zsh
+```
 
 ### Python evnironments
-The AcnTech ML-developer box comes with both Python and Anaconda (Miniconda) installed. By default python3 will refer the "native" python 3.6 installation which ships with ubuntu. To switch to/from Miniconda3-python type:
+The AcnTech ML-developer box comes with both Python and Anaconda (Miniconda) installed. By default python3 will refer the "native" python 3.8 installation which ships with ubuntu. To switch to/from Miniconda3-python type:
 
 ```bash
 # Switch to miniconda

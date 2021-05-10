@@ -7,7 +7,8 @@ class system (
   $variant = '',
   $options = '',
   $backspace = 'guess',
-  $configuration_script = "/home/vagrant/.configure.sh"
+  $configuration_script = "/home/vagrant/.configure.sh",
+  $alias_rc = "/home/vagrant/.aliases"
   ) {
 
   exec { "system-apt-update":
@@ -56,9 +57,25 @@ class system (
     group => "vagrant"
   }
 
+    file { "alias_rc":
+    path => $alias_rc,
+    source => "puppet:///modules/system/alias.sh",
+    mode => "0755",
+    replace => 'no',
+    owner => "vagrant",
+    group => "vagrant"
+  }
+
+  exec { "add-alias-rc":
+    cwd => "/home/vagrant",
+    command => "echo 'source ~/.aliases' >> .bashrc",
+    require => File["alias_rc"]
+  }
+
+
   exec { "add-common-bash":
     cwd => "/home/vagrant",
-    command => "echo '~/.configure.sh' >> .bashrc",
+    command => "echo 'source ~/.configure.sh' >> .bashrc",
     require => File["commmonrc"]
   }
 }
