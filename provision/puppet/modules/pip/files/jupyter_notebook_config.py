@@ -878,4 +878,4 @@ c.NotebookApp.port = 8888
 
 # Version control for Notebook
 c.NotebookApp.contents_manager_class="jupytext.TextFileContentsManager"
-c.ContentsManager.default_jupytext_formats=".ipynb,.Rmd"
+c.ContentsManager.default_jupytext_formats=".ipynb,.md"
