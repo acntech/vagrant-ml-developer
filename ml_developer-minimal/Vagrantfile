@@ -8,7 +8,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Name of Vagrant Box to use as base
-  config.vm.box = "hashicorp/bionic64"
+  config.vm.box = "bento/ubuntu-20.04"
   
   # Don't generate new SSH key, but use the default insecure key
   config.ssh.insert_key = false

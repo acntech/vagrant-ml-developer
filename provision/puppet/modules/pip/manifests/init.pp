@@ -39,4 +39,10 @@ class pip (
     group => "vagrant",
     require => Exec["upgrade-pip"]
   }  
+   exec { "install-poetry":
+    require => Exec["upgrade-pip"],
+    user => "vagrant",
+    command => "curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -", 
+    environment => [ 'HOME=/home/vagrant' ]
+  }
 }
