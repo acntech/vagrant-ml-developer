@@ -40,7 +40,7 @@ The box has the following developer tools installed.
 * Git 2.20.1
 * Docker 19.03.5 Community Edition
   * Docker Compose 1.24.1
-* Python 3.8
+* Python 3.8.5
   * pip
   * python-venv
 * Sqlite3 
@@ -90,11 +90,32 @@ Easiest way to find new port is to:
 Open virtualbox --> select desired machine --> Settings --> Network --> Advanced --> Port forwarding
 
 
-#### Use box as remote environment
+## Use box as remote environment
 Support both in Pycharm Pro and Visual Studio Code makes it possible to use AcnTech ML developer box as a remote environment.
 
 The procedure is tried and tested from VSCode with [remote development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) extension. 
 
+### Getting started with VSCode 
+1. Install [VSCode](https://code.visualstudio.com/) on host machine
+2. Install the VSCode [remote ssh-extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)  
+```code --install-extension ms-vscode-remote.remote-ssh```
+3. Configure SSH remote environment by:  
+Remote Explorer -> Configure -> ```C:\Users\<USER\.ssh\config```
+4. Add following configuration:  
+```
+Host <INSERT DESIRED MACHINE NAME>
+  HostName 127.0.0.1
+  Port 2222
+  User vagrant
+  IdentityFile <PATH TO VAGRANT FOLDER>\.vagrant\machines\default\virtualbox\private_key
+```
+5. Connect to host. 
 
+### Troubleshooting
+1. Check that path to SSH identity file is correct
+2. Check if multiple boxes are running. If so check forward of port 22 and edit config to correct SSH port
+
+### Extensions
+Extensions must be installed on box to funtion. In extensions tab in VSCode install desired extension in remote environement. 
 
 
