@@ -22,7 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.gui = false
 
     # Customize CPU count
-    vb.cpus = "2"
+    vb.cpus = "4"
 
     # Customize the amount of memory on the VM
     vb.memory = "4096"
@@ -38,6 +38,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.usable_port_range = 8000..8999
 
   #Port forwarding
+  config.vm.network "forwarded_port", guest: 22, host: 2222, host_ip: "127.0.0.1", auto_correct: true, id: "ssh"   # Force SSH to desired port.
   config.vm.network "forwarded_port", guest: 8888, host: 8888, host_ip: "127.0.0.1", auto_correct: true   # Jupyter
   config.vm.network "forwarded_port", guest: 8080, host: 8080, host_ip: "127.0.0.1", auto_correct: true   # HTTP
   config.vm.network "forwarded_port", guest: 6006, host: 6006, host_ip: "127.0.0.1", auto_correct: true   # Tensorboard
